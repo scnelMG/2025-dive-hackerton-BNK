@@ -1,0 +1,15 @@
+# Jupyter
+.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.pyc
+
+# Local data and artifacts
+data/raw/
+data/private/
+*.zip
+
+# OS/editor
+.DS_Store
+Thumbs.db
