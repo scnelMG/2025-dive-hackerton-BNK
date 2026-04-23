@@ -6,9 +6,21 @@ __pycache__/
 *.pyc
 
 # Local data and artifacts
+data/*
+!data/README.md
 data/raw/
 data/private/
 *.zip
+
+# External source materials and submission originals
+docs/제출코드/
+docs/*.docx
+docs/*.pdf
+docs/*.pptx
+docs/*.zip
+!docs/IBA_서호영.pptx
+!docs/IBA_서호영_요약본.docx
+!docs/인사이트보고서_IBA_최종.docx
 
 # OS/editor
 .DS_Store

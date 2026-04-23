@@ -22,6 +22,9 @@
 - 결과 및 전략: [docs/results.md](docs/results.md)
 - 재현 및 실행 범위: [docs/reproducibility.md](docs/reproducibility.md)
 - 노트북 읽는 순서: [notebooks/README.md](notebooks/README.md)
+- 최종 발표자료: [docs/IBA_서호영.pptx](docs/IBA_서호영.pptx)
+- 최종 요약본: [docs/IBA_서호영_요약본.docx](docs/IBA_서호영_요약본.docx)
+- 최종 보고서: [docs/인사이트보고서_IBA_최종.docx](docs/인사이트보고서_IBA_최종.docx)
 
 ## 왜 이 프로젝트가 중요한가
 
