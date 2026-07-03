@@ -152,6 +152,14 @@
 
 의존성은 [requirements.txt](requirements.txt)에서 확인할 수 있습니다.
 
+## 빠른 검증
+
+공개 포트폴리오 제출 전에는 아래 명령으로 필수 문서와 대용량 tracked 파일 여부를 확인합니다.
+
+```bash
+python scripts/verify_portfolio.py
+```
+
 ## 저장소 구성
 
 ```text
