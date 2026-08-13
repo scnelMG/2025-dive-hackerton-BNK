@@ -8,6 +8,7 @@ __pycache__/
 # Local data and artifacts
 data/*
 !data/README.md
+!data/input-contract.md
 data/raw/
 data/private/
 *.zip

@@ -9,3 +9,5 @@ README에 삽입한 이미지는 모두 이 저장소의 실제 최종 발표자
 | `assets/presentation/loan-targeting-strategy.png` | `IBA_서호영.pptx` 23쪽 | 서민전용대출 잠재고객 발굴·관리 전략 |
 
 원본 발표자료는 [IBA_서호영.pptx](IBA_서호영.pptx)에서 직접 확인할 수 있습니다.
+
+README의 군집별 인원·비중은 위 표의 `noninterest-growth-roadmap.png`와 동일한 **12쪽**을 출처로 합니다. `63%`처럼 원본 슬라이드에서 정확한 위치를 확인하지 못한 수치는 README에서 제거했습니다.

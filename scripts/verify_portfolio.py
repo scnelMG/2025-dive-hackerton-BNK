@@ -25,11 +25,18 @@ FORBIDDEN_TRACKED_SUFFIXES: Final = (
     ".jsonl",
     ".zip",
 )
+ALLOWED_DATA_DOCUMENTS: Final = (
+    "data/README.md",
+    "data/input-contract.md",
+)
 REQUIRED_PATHS: Final = (
     "README.md",
     "requirements.txt",
     "data/README.md",
+    "data/input-contract.md",
     "docs/analysis-method.md",
+    "docs/interest-analysis-walkthrough.md",
+    "docs/model-validation.md",
     "docs/presentation-assets.md",
     "docs/public-safety.md",
     "docs/reproducibility.md",
@@ -53,6 +60,12 @@ NOTEBOOKS: Final = (
     "notebooks/3.이자이익_분석.ipynb",
 )
 MARKDOWN_LINK_PATTERN: Final = re.compile(r"\]\(([^)]+)\)")
+FORBIDDEN_NOTEBOOK_EXECUTION_PATTERNS: Final = (
+    "pip install",
+    "urlretrieve",
+    "koreanize_matplotlib",
+    "Path.home()",
+)
 
 
 @dataclass(frozen=True, slots=True)
@@ -88,7 +101,12 @@ def check_readme_structure() -> CheckResult:
 
 def check_markdown_links() -> CheckResult:
     missing: list[str] = []
-    documents = (ROOT / "README.md", *ROOT.glob("docs/*.md"), *ROOT.glob("notebooks/*.md"))
+    documents = (
+        ROOT / "README.md",
+        *ROOT.glob("data/*.md"),
+        *ROOT.glob("docs/*.md"),
+        *ROOT.glob("notebooks/*.md"),
+    )
     for document in documents:
         text = document.read_text(encoding="utf-8")
         for target in MARKDOWN_LINK_PATTERN.findall(text):
@@ -143,6 +161,13 @@ def check_notebooks() -> CheckResult:
         if not cells or cells[0].get("cell_type") != "markdown" or PORTFOLIO_GUIDE_HEADING not in guide:
             issues.append(f"{relative_path}: missing portfolio guide")
         for cell in cells:
+            source = join_notebook_text(cell.get("source"))
+            forbidden_pattern = next(
+                (pattern for pattern in FORBIDDEN_NOTEBOOK_EXECUTION_PATTERNS if pattern in source),
+                None,
+            )
+            if forbidden_pattern is not None:
+                issues.append(f"{relative_path}: forbidden execution pattern {forbidden_pattern}")
             for output in cell.get("outputs", []):
                 if output.get("output_type") == "error":
                     issues.append(f"{relative_path}: stored error output")
@@ -204,7 +229,7 @@ def check_sensitive_tracked_paths() -> CheckResult:
         for path in listing.paths
         if path.suffix.lower() in FORBIDDEN_TRACKED_SUFFIXES
         or path.relative_to(ROOT).as_posix().startswith("data/")
-        and path.relative_to(ROOT).as_posix() != "data/README.md"
+        and path.relative_to(ROOT).as_posix() not in ALLOWED_DATA_DOCUMENTS
     ]
     if forbidden:
         return CheckResult("sensitive tracked paths", False, ", ".join(forbidden))
