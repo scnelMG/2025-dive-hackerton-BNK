@@ -37,6 +37,7 @@ REQUIRED_PATHS: Final = (
     "docs/analysis-method.md",
     "docs/interest-analysis-walkthrough.md",
     "docs/model-validation.md",
+    "docs/execution-measurement.md",
     "docs/presentation-assets.md",
     "docs/public-safety.md",
     "docs/reproducibility.md",
@@ -46,6 +47,7 @@ REQUIRED_PATHS: Final = (
     "assets/presentation/two-track-framework.png",
     "assets/presentation/noninterest-growth-roadmap.png",
     "assets/presentation/loan-targeting-strategy.png",
+    "assets/analysis/noninterest-elbow-k4.png",
 )
 README_SECTIONS: Final = (
     "## 문제 정의: 고객 분류가 아니라 수익 구조를 푸는 일",
@@ -123,14 +125,14 @@ def check_markdown_links() -> CheckResult:
 def check_presentation_assets() -> CheckResult:
     invalid: list[str] = []
     for path in REQUIRED_PATHS:
-        if not path.startswith("assets/presentation/"):
+        if not path.startswith(("assets/presentation/", "assets/analysis/")):
             continue
         with (ROOT / path).open("rb") as file:
             if file.read(8) != b"\x89PNG\r\n\x1a\n":
                 invalid.append(path)
     if invalid:
-        return CheckResult("presentation assets", False, ", ".join(invalid))
-    return CheckResult("presentation assets", True, "README assets are valid PNG files")
+        return CheckResult("visual assets", False, ", ".join(invalid))
+    return CheckResult("visual assets", True, "README assets are valid PNG files")
 
 
 def join_notebook_text(value: str | list[str] | None) -> str:

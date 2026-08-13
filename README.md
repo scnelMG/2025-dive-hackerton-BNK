@@ -7,7 +7,7 @@
   <img src="https://img.shields.io/badge/pandas-Data%20Analysis-150458?logo=pandas&logoColor=white" alt="pandas">
   <img src="https://img.shields.io/badge/scikit--learn-K--Means-F7931E?logo=scikitlearn&logoColor=white" alt="scikit-learn K-Means">
   <img src="https://img.shields.io/badge/Domain-Banking%20Analytics-005BAC" alt="Banking Analytics">
-  <img src="https://img.shields.io/badge/Type-Competition%20ML-4C8C4A" alt="Competition ML">
+  <img src="https://img.shields.io/badge/Type-Data%20Hackathon-4C8C4A" alt="Data Hackathon">
 </p>
 
 > 거래 유형별 BNK 고객을 세분화하고, **이자이익의 안정성**과 **비이자이익의 성장성**을 분리해 고객 관리 전략으로 연결한 데이터 해커톤 프로젝트입니다.
@@ -58,7 +58,7 @@
 <p align="center">
   <img src="assets/presentation/two-track-framework.png" alt="최종 발표자료 4쪽의 Two-track 분석 프레임" width="900">
 </p>
-<p align="center"><sub>실제 최종 발표자료 4쪽. 이 저장소의 이미지는 모두 기존 발표 산출물에서 추출했으며, 별도로 생성한 이미지는 사용하지 않았습니다.</sub></p>
+<p align="center"><sub>실제 최종 발표자료 4쪽. 이 저장소의 이미지는 기존 발표자료 또는 실제 분석 노트북 출력에서 추출했으며, 별도로 생성한 이미지는 사용하지 않았습니다.</sub></p>
 
 ## 데이터: 왜 전처리가 분석의 출발점이었나
 
@@ -82,6 +82,15 @@
   <img src="assets/presentation/noninterest-growth-roadmap.png" alt="최종 발표자료 12쪽의 비이자이익 성장 로드맵" width="900">
 </p>
 <p align="center"><sub>실제 최종 발표자료 12쪽. 군집 규모와 성장 사다리·교차 확장 전략을 함께 제시했습니다.</sub></p>
+
+#### 왜 4개 군집인가
+
+비이자이익 K-Means는 당시 분석 노트북에 저장된 elbow 결과에서 `k=4`를 선택했습니다. 아래 그림은 원본 데이터를 다시 실행해 만든 이미지가 아니라, [공개 노트북](notebooks/1.전처리_및_군집화.ipynb)에 이미 저장되어 있던 실제 출력입니다. 이 근거는 당시의 선택 과정을 보여주며, silhouette·안정성 검증까지 완료했다는 의미는 아닙니다.
+
+<p align="center">
+  <img src="assets/analysis/noninterest-elbow-k4.png" alt="실제 분석 노트북에 저장된 비이자이익 K-Means elbow 결과. Best k=4" width="720">
+</p>
+<p align="center"><sub>원본과 한계는 <a href="docs/presentation-assets.md">시각 자료 출처</a>, <a href="docs/model-validation.md">모델 근거와 검증 범위</a>에서 확인할 수 있습니다.</sub></p>
 
 - **성장 사다리**: 군집별 대표 행동을 기준으로 다음 단계의 비이자상품 진입을 설계
 - **교차 확장**: 같은 군집 안의 상품 연관성(조건부 확률)을 활용해 거래 범위를 확장
@@ -119,9 +128,10 @@
 1. [분석 방법](docs/analysis-method.md) — Two-track 구조와 구간형 데이터 처리 원칙
 2. [모델 근거와 검증 범위](docs/model-validation.md) — 공개본에서 확인 가능한 근거와 확인 불가 범위
 3. [결과 및 전략](docs/results.md) — 군집·상품별 해석과 제안
-4. [최종 발표자료](docs/IBA_서호영.pptx) — 원본 최종 발표 산출물
-5. [발표 이미지 출처](docs/presentation-assets.md) — README에 사용한 실제 슬라이드의 원본 위치
-6. [노트북 안내](notebooks/README.md) — 코드 흐름과 실행 전제
+4. [실행·평가 설계](docs/execution-measurement.md) — 성과를 꾸미지 않고, 후속 검증의 기준을 정의한 문서
+5. [최종 발표자료](docs/IBA_서호영.pptx) — 원본 최종 발표 산출물
+6. [README 시각 자료 출처](docs/presentation-assets.md) — 실제 슬라이드·노트북 출력의 원본 위치
+7. [노트북 안내](notebooks/README.md) — 코드 흐름과 실행 전제
 
 역할과 배경을 한 문서로 확인하려면 [프로젝트 요약](docs/project-summary.md)을, 최종 요약본과 보고서를 확인하려면 [요약본](docs/IBA_서호영_요약본.docx)과 [인사이트 보고서](docs/인사이트보고서_IBA_최종.docx)를 참고하세요.
 
@@ -142,7 +152,7 @@
 
 - 원본 데이터와 정확한 실행 전제: [재현 가이드](docs/reproducibility.md)
 - 데이터 비공개 기준: [data/README.md](data/README.md)
-- 이미지의 실제 산출물 출처: [발표 이미지 출처](docs/presentation-assets.md)
+- 이미지의 실제 산출물 출처: [README 시각 자료 출처](docs/presentation-assets.md)
 - 코드·발표자료의 이용 기준: [이용 및 공개 범위](docs/usage.md)
 - 공개 전 점검: `python scripts/verify_portfolio.py`
 
@@ -150,7 +160,7 @@
 
 ```text
 .
-|-- assets/presentation/       # 실제 최종 발표자료에서 추출한 README 이미지
+|-- assets/                    # 실제 최종 발표자료·분석 노트북에서 추출한 README 이미지
 |-- data/                     # 비공개 데이터의 공개 기준 안내
 |-- docs/                     # 분석·결과·재현 문서와 최종 발표자료
 |-- notebooks/                # 전처리, 비이자이익, 이자이익 분석 노트북

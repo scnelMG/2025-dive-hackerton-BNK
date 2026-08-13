@@ -127,6 +127,9 @@
 
 ## 연결 문서
 
+- 비이자이익 군집 수 선택의 실제 elbow 출력: [noninterest-elbow-k4.png](../assets/analysis/noninterest-elbow-k4.png)
+- 모델 근거와 한계: [model-validation.md](model-validation.md)
+- 실행 성과를 주장하지 않는 후속 측정 설계: [execution-measurement.md](execution-measurement.md)
 - 프로젝트 요약: [project-summary.md](project-summary.md)
 - 결과 및 전략: [results.md](results.md)
 - 재현 가이드: [reproducibility.md](reproducibility.md)
