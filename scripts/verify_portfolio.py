@@ -196,17 +196,16 @@ def check_notebooks() -> CheckResult:
 def listed_tracked_files() -> TrackedFileListing:
     try:
         completed = subprocess.run(
-            ["git", "ls-files"],
+            ["git", "ls-files", "-z"],
             cwd=ROOT,
             check=True,
             capture_output=True,
-            text=True,
         )
     except FileNotFoundError:
         return TrackedFileListing((), "git executable was not found")
     except subprocess.CalledProcessError as error:
         return TrackedFileListing((), f"git ls-files failed with exit code {error.returncode}")
-    return TrackedFileListing(tuple(ROOT / line for line in completed.stdout.splitlines() if line), None)
+    return TrackedFileListing(tuple(ROOT / line for line in completed.stdout.decode("utf-8").split("\0") if line), None)
 
 
 def check_required_paths_tracked() -> CheckResult:
